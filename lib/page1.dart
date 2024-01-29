@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_registration/page2.dart';
 import 'package:simple_registration/style.dart';
 
 class Page1 extends StatefulWidget {
@@ -9,6 +10,18 @@ class Page1 extends StatefulWidget {
 }
 
 class _Page1State extends State<Page1> {
+  String? _phone;
+  bool isActive = false;
+  void _active() {
+    if (_phone != null) {}
+    if (_phone!.isEmpty) {
+      isActive = false;
+    } else {
+      isActive = true;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +29,7 @@ class _Page1State extends State<Page1> {
         backgroundColor: Colors.white,
         leading: Icon(Icons.arrow_back_ios),
       ),
-      body: const Column(
+      body: Column(
         children: [
           Center(
             child: Row(
@@ -56,13 +69,36 @@ class _Page1State extends State<Page1> {
             child: Column(
               children: [
                 TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Номер телефона',
-                      hintText: '+7'),
-                ),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Номер телефона',
+                        hintText: '+7'),
+                    onChanged: (phone) {
+                      _phone = phone;
+                      _active();
+                    }),
                 SizedBox(height: 100),
-              
+                ElevatedButton(
+                    style: ButtonStyle(backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      return _phone.toString() == '+7700707070'
+                          ? Colors.yellow
+                          : Colors.white;
+                    })),
+                    onPressed: isActive
+                        ? () {
+                            if (_phone.toString() == '+7700707070') {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyText()));
+                            }
+                            ;
+                          }
+                        : null,
+                    child: Text('Отправить смс-код')),
+                Text(
+                    'Нажимая на данную кнопку, вы даете согласие на обработку '),
               ],
             ),
           ),

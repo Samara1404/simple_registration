@@ -13,17 +13,20 @@ class _MyTextState extends State<MyText> {
     return Scaffold(
       body: Container(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'name',
-                  hintText: 'Samara',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'name',
+                    hintText: 'Samara',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
